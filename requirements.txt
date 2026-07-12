@@ -1,0 +1,11 @@
+# Python 3.10
+# Reference versions used during development:
+#   torch 2.9.1 (+cu128)  numpy 2.2.6  Pillow 11.3.0  matplotlib 3.10.8  scipy 1.15.3
+#
+# For a CUDA-specific PyTorch build, install torch separately following
+# https://pytorch.org/get-started/locally/ (e.g. the cu128 wheel), then the rest.
+torch>=2.0
+numpy>=1.24
+Pillow>=9.0
+matplotlib>=3.6
+scipy>=1.10

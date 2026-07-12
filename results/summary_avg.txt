@@ -1,0 +1,21 @@
+Aggregate Evaluation Summary — Method 4
+============================================================
+Sequences evaluated: 13
+
+─── Overall (mean across sequences) ───────────────────
+  Mean IoU:           0.0252
+  Mean Dice:          0.0350
+  Mean F1:            0.0350
+  Mean Precision:     0.0391
+  Mean Recall:        0.0356
+
+─── Event frames only (mean across sequences) ─────────
+  Mean IoU:           0.3292
+  Mean Dice:          0.4590
+  Mean F1:            0.4590
+  Mean Precision:     0.5117
+  Mean Recall:        0.4680
+
+─── FP50 (mean frame index, -1 = no embolism) ─────────
+  Mean pred fp50 frame: 198.0
+  Mean GT   fp50 frame: 191.2

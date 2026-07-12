@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------------------
+# Dataset & large assets — NOT versioned (provide locally, see README)
+# ---------------------------------------------------------------------------
+/data/
+/trash/
+
+# ---------------------------------------------------------------------------
+# Generated outputs of Method 4 (regenerable via run_method4.sh)
+# Kept locally, excluded from git.
+# ---------------------------------------------------------------------------
+/src/method4/outputs/
+/src/method4/evaluation/
+/src/method4/latex/
+/src/method4/learning_curve/runs/
+/src/method4/learning_curve/logs/
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# ---------------------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

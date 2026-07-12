@@ -1,0 +1,72 @@
+2026-04-23 20:38:20  Train sequences: ['Senecio_06_14_L1_Cavicam09_090725', 'Senecio_06_14_L2_Cavicam08_090725', 'Senecio_06_14_L3_Cavicam06_090725', 'Senecio_06_14_L4_Cavicam10_090725', 'Senecio_07_11_L1_Cavicam11_160725', 'Senecio_07_11_L3_Cavicam10_160725', 'Senecio_07_11_L4_Cavicam06_160725', 'Senecio_07_11_L5_Cavicam09_160725', 'Senecio_07_12_L1_Cavicam06_210725', 'Senecio_07_12_L2_Cavicam08_210725', 'Senecio_07_12_L3_Cavicam09_210725', 'Senecio_07_12_L4_Cavicam10_210725', 'Senecio_07_12_L5_Cavicam11_210725', 'Senecio_09_04_L1_Cavicam15_140725', 'Senecio_09_04_L2_Cavicam14_140725', 'Senecio_09_04_L3_Cavicam13_140725', 'Senecio_09_04_L4_Cavicam16_140725', 'Senecio_09_04_L5_Cavicam12_140725', 'Senecio_09_14_L1_Cavicam11_070725', 'Senecio_09_14_L2_Cavicam10_070725', 'Senecio_09_14_L3_Cavicam09_070725', 'Senecio_09_14_L4_Cavicam08_070725', 'Senecio_09_14_L5_Cavicam06_070725', 'Senecio_10_03_L1_Cavicam12_070725', 'Senecio_10_03_L2_Cavicam16_070725', 'Senecio_10_03_L4_Cavicam13_070725', 'Senecio_10_03_L5_Cavicam15_070725', 'Senecio_11_13_L1_Cavicam11_300625', 'Senecio_11_13_L2_Cavicam10_300625', 'Senecio_11_13_L3_Cavicam09_300625', 'Senecio_13_09_L2_Cavicam14_300625', 'Senecio_13_09_L4_Cavicam16_300625', 'Senecio_13_09_L5_Cavicam15_300625', 'Senecio_17_11_L2_Cavicam14_210725', 'Senecio_17_11_L3_Cavicam15_210725', 'Senecio_17_11_L4_Cavicam13_210725', 'Senecio_19_04_L1_Cavicam01_160725', 'Senecio_19_04_L2_Cavicam02_160725', 'Senecio_19_04_L3_Cavicam03_160725', 'Senecio_19_04_L4_Cavicam04_160725', 'Senecio_19_04_L5_Cavicam05_160725', 'Senecio_21_11_L1_Cavicam01_140725', 'Senecio_21_11_L2_Cavicam02_140725', 'Senecio_21_11_L3_Cavicam03_140725', 'Senecio_21_11_L4_Cavicam04_140725', 'Senecio_21_11_L5_Cavicam05_140725']
+2026-04-23 20:38:20  Val   sequences: ['Senecio_22_12_L1_Cavicam05_090725', 'Senecio_22_12_L2_Cavicam04_090725', 'Senecio_22_12_L3_Cavicam03_090725', 'Senecio_22_12_L4_Cavicam02_090725', 'Senecio_23_08_L1_Cavicam08_140725', 'Senecio_23_08_L2_Cavicam11_140725', 'Senecio_23_08_L3_Cavicam06_140725', 'Senecio_23_08_L4_Cavicam10_140725', 'Senecio_23_08_L5_Cavicam09_140725']
+
+2026-04-23 20:38:20  Building training dataset …
+2026-04-23 20:39:15  
+Building validation dataset …
+2026-04-23 20:39:22  
+2026-04-23 20:39:22  Device: cuda
+2026-04-23 20:39:23  
+Starting training: up to 150 epochs, batch=16, lr=0.0001, weight_decay=0.0001, early_stop_patience=15
+2026-04-23 20:39:23  ------------------------------------------------------------
+2026-04-23 20:45:16  Epoch   1/150  train=0.514240  val=0.500887  time=352.8s ← best
+2026-04-23 20:47:14  Epoch   2/150  train=0.477026  val=0.469908  time=118.1s ← best
+2026-04-23 20:49:09  Epoch   3/150  train=0.363717  val=0.417723  time=115.5s ← best
+2026-04-23 20:51:07  Epoch   4/150  train=0.289798  val=0.392440  time=117.1s ← best
+2026-04-23 20:53:03  Epoch   5/150  train=0.263231  val=0.378057  time=116.0s ← best
+2026-04-23 20:54:58  Epoch   6/150  train=0.251603  val=0.363847  time=114.8s ← best
+2026-04-23 20:56:51  Epoch   7/150  train=0.244765  val=0.295636  time=113.1s ← best
+2026-04-23 20:58:42  Epoch   8/150  train=0.240688  val=0.249063  time=110.7s ← best
+2026-04-23 21:00:35  Epoch   9/150  train=0.238042  val=0.241447  time=113.7s ← best
+2026-04-23 21:02:29  Epoch  10/150  train=0.235546  val=0.238927  time=113.3s ← best
+2026-04-23 21:04:19  Epoch  11/150  train=0.233800  val=0.243428  time=110.5s
+2026-04-23 21:06:07  Epoch  12/150  train=0.233386  val=0.167579  time=107.7s ← best
+2026-04-23 21:07:57  Epoch  13/150  train=0.232266  val=0.207325  time=110.0s
+2026-04-23 21:09:47  Epoch  14/150  train=0.231204  val=0.206455  time=110.4s
+2026-04-23 21:11:41  Epoch  15/150  train=0.230700  val=0.179233  time=113.8s
+2026-04-23 21:13:32  Epoch  16/150  train=0.229936  val=0.183978  time=110.7s
+2026-04-23 21:15:25  Epoch  17/150  train=0.228183  val=0.172213  time=113.6s
+2026-04-23 21:17:16  Epoch  18/150  train=0.227159  val=0.228906  time=110.5s
+2026-04-23 21:19:04  Epoch  19/150  train=0.223627  val=0.188021  time=108.1s
+2026-04-23 21:20:57  Epoch  20/150  train=0.222043  val=0.171873  time=112.8s
+2026-04-23 21:22:50  Epoch  21/150  train=0.221434  val=0.150369  time=112.7s ← best
+2026-04-23 21:24:36  Epoch  22/150  train=0.221006  val=0.163833  time=106.8s
+2026-04-23 21:26:30  Epoch  23/150  train=0.219613  val=0.161023  time=113.7s
+2026-04-23 21:28:29  Epoch  24/150  train=0.220274  val=0.172465  time=118.6s
+2026-04-23 21:30:24  Epoch  25/150  train=0.218660  val=0.181796  time=115.6s
+2026-04-23 21:32:20  Epoch  26/150  train=0.219422  val=0.146201  time=115.7s ← best
+2026-04-23 21:34:23  Epoch  27/150  train=0.219441  val=0.155332  time=123.1s
+2026-04-23 21:36:19  Epoch  28/150  train=0.219351  val=0.173244  time=116.1s
+2026-04-23 21:38:32  Epoch  29/150  train=0.219902  val=0.165811  time=132.6s
+2026-04-23 21:41:00  Epoch  30/150  train=0.219294  val=0.149016  time=148.6s
+2026-04-23 21:43:20  Epoch  31/150  train=0.219132  val=0.156980  time=140.0s
+2026-04-23 21:45:46  Epoch  32/150  train=0.217857  val=0.174309  time=145.6s
+2026-04-23 21:48:11  Epoch  33/150  train=0.216727  val=0.164008  time=145.1s
+2026-04-23 21:50:41  Epoch  34/150  train=0.215300  val=0.185356  time=149.8s
+2026-04-23 21:52:58  Epoch  35/150  train=0.215977  val=0.149819  time=136.9s
+2026-04-23 21:55:28  Epoch  36/150  train=0.214757  val=0.155969  time=150.3s
+2026-04-23 21:57:53  Epoch  37/150  train=0.215150  val=0.210015  time=145.2s
+2026-04-23 22:00:24  Epoch  38/150  train=0.215100  val=0.174866  time=150.4s
+2026-04-23 22:02:52  Epoch  39/150  train=0.214135  val=0.142516  time=148.6s ← best
+2026-04-23 22:05:14  Epoch  40/150  train=0.214708  val=0.156498  time=141.2s
+2026-04-23 22:07:44  Epoch  41/150  train=0.212714  val=0.146469  time=150.5s
+2026-04-23 22:10:10  Epoch  42/150  train=0.212912  val=0.151347  time=145.3s
+2026-04-23 22:12:39  Epoch  43/150  train=0.212891  val=0.166839  time=149.0s
+2026-04-23 22:15:06  Epoch  44/150  train=0.214652  val=0.156962  time=147.9s
+2026-04-23 22:17:32  Epoch  45/150  train=0.214123  val=0.146940  time=146.0s
+2026-04-23 22:19:21  Epoch  46/150  train=0.213223  val=0.161054  time=108.3s
+2026-04-23 22:20:58  Epoch  47/150  train=0.211719  val=0.150420  time=97.1s
+2026-04-23 22:22:35  Epoch  48/150  train=0.210754  val=0.151276  time=97.0s
+2026-04-23 22:24:12  Epoch  49/150  train=0.210963  val=0.170956  time=97.6s
+2026-04-23 22:25:52  Epoch  50/150  train=0.211557  val=0.157741  time=99.3s
+2026-04-23 22:27:28  Epoch  51/150  train=0.211261  val=0.154824  time=96.6s
+2026-04-23 22:29:04  Epoch  52/150  train=0.211716  val=0.145021  time=96.3s
+2026-04-23 22:30:41  Epoch  53/150  train=0.211928  val=0.144146  time=96.7s
+2026-04-23 22:32:22  Epoch  54/150  train=0.211672  val=0.153478  time=101.1s
+2026-04-23 22:32:22  
+Early stopping triggered at epoch 54. Best val loss 0.142516 at epoch 39.
+2026-04-23 22:32:22  Best val loss: 0.142516 (epoch 39)
+2026-04-23 22:32:22  Best checkpoint → /deck/users/lmandelli/leaf/src/method4/checkpoints/best_model.pt
+2026-04-23 22:32:22  Loss curve CSV → /deck/users/lmandelli/leaf/src/method4/checkpoints/loss_curve.csv
+2026-04-23 22:32:23  Loss curve PNG → /deck/users/lmandelli/leaf/src/method4/checkpoints/loss_curve.png
+2026-04-23 22:32:23  Loss curve PNG → /deck/users/lmandelli/leaf/src/method4/train_curves.png
