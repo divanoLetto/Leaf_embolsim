@@ -7,19 +7,10 @@
 
 ![](https://img.shields.io/github/contributors/divanoLetto/Leaf_embolsim?color=light%20green) ![](https://img.shields.io/github/repo-size/divanoLetto/Leaf_embolsim?cacheSeconds=60)
 
-Deep-learning segmentation of **embolism events** in time-lapse image sequences
-of drying leaves. A U-Net receives two consecutive frames (`frame_t`,
-`frame_{t+1}`) and predicts the pixels that became **newly embolised** between
-them. Aggregating these incremental masks over a sequence reconstructs the
-cumulative embolised area and the vulnerability-curve dynamics.
-
-Imaging setup: Cavicam / Raspberry Pi Camera v2 (IMX219), ~5-minute intervals,
-fixed LED illumination.
+TODO add abstract or similar 
 
 <img src="images/demo.gif" width="100%" alt="Prediction demo"/>
 
-*Two consecutive input frames and the model's predicted embolism mask
-(white = predicted embolism) on one test sequence.*
 
 ---
 
