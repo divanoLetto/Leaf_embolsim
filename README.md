@@ -65,30 +65,38 @@ Generated outputs (`outputs/`, `evaluation/`, `learning_curve/runs/`, …) are
 
 ## Dataset
 
-The dataset is **not part of this repository**. Place it under `data/`, one
-directory per sequence, matching the names in `train.txt` / `val.txt` /
-`test.txt`:
+The dataset is hosted on Hugging Face:
+**[LorenzoMande/Leaf_embolism](https://huggingface.co/datasets/LorenzoMande/Leaf_embolism)**.
+It is stored as one gzipped tarball per sequence (`<sequence>.tar.gz`, containing
+the time-lapse frames and the ground-truth masks) plus the reference spreadsheets.
+
+Download and reconstruct the `data/` folder the code expects:
+
+```bash
+pip install huggingface_hub
+
+# 1. download all sequence archives + spreadsheets
+hf download LorenzoMande/Leaf_embolism --repo-type dataset --local-dir data_hf
+
+# 2. extract each sequence into data/ and add the spreadsheets
+mkdir -p data
+for f in data_hf/*.tar.gz; do tar xzf "$f" -C data; done
+cp data_hf/*.xlsx data/
+```
+
+> Python alternative for step 1:
+> `from huggingface_hub import snapshot_download; snapshot_download("LorenzoMande/Leaf_embolism", repo_type="dataset", local_dir="data_hf")`
+
+Each sequence then looks like:
 
 ```
 data/
 ├── Senecio_16_05_L1_Cavicam15_090725/
-│   ├── 20250709-180217.png              # time-lapse frames
+│   ├── 20250709-180217.png     # time-lapse frames
 │   ├── ...
-│   └── <sequence>_analysedStack/        # ground-truth mask TIFFs
-│       └── ...                          # one mask per consecutive frame pair
-└── SenecioIVERdroughtVCs.xlsx           # reference vulnerability-curve data
+│   └── analysedStack/          # ground-truth mask TIFFs (one per frame pair)
+└── SenecioIVERdroughtVCs.xlsx  # reference vulnerability-curve data
 ```
-
-For each sequence, `n_masks == n_frames − 1` (one incremental mask per frame
-pair). Verify a dataset with:
-
-```bash
-python src/check_data.py
-```
-
-Splits are biologically motivated (leaf / mother-plant / population
-generalisation levels); see the docstring in
-[src/make_splits.py](src/make_splits.py).
 
 ---
 
@@ -106,30 +114,42 @@ For a CUDA build of PyTorch, install `torch` following the
 
 ## Usage
 
-Run everything from the repository root.
+Run everything from the repository root. The pipeline has three stages, and
+**training is optional** — a pre-trained checkpoint is already included at
+[src/method/checkpoints/best_model.pt](src/method/checkpoints/best_model.pt).
 
-**Full pipeline** (train → predict on the test set → evaluate):
+| Stage | Script | Output |
+|-------|--------|--------|
+| **Train** | `train.py` | `checkpoints/best_model.pt` |
+| **Predict** (inference) | `predict.py` | predicted masks in `outputs/` |
+| **Evaluate** | `evaluate.py` | metrics + figures in `evaluation/` |
+
+### A) Inference only — use the included pre-trained model
+
+No training required:
 
 ```bash
-bash src/method/run_method.sh
-# forward flags to training, e.g.:
+python src/method/predict.py --all       # or a single one: --sequence <SEQUENCE_NAME>
+python src/method/evaluate.py --all       # metrics + figures
+```
+
+### B) Train from scratch
+
+Retrains the model (overwrites `checkpoints/best_model.pt`), then runs inference
+and evaluation:
+
+```bash
+python src/method/train.py                # train (with early stopping)
+python src/method/predict.py --all
+python src/method/evaluate.py --all
+```
+
+Or the whole pipeline in a single command:
+
+```bash
+bash src/method/run_method.sh                    # extra flags are forwarded to train.py, e.g.:
 bash src/method/run_method.sh --epochs 200 --batch-size 8
 ```
-
-**Individual steps:**
-
-```bash
-python src/method/train.py                                   # train
-python src/method/predict.py --sequence <SEQUENCE_NAME>      # or --all
-python src/method/evaluate.py --all                          # metrics + figures
-```
-
-Outputs are written to `src/method/{outputs,evaluation}/`; checkpoints to
-`src/method/checkpoints/`.
-
-A pre-trained checkpoint is included at
-[src/method/checkpoints/best_model.pt](src/method/checkpoints/best_model.pt),
-so `predict.py` / `evaluate.py` can be run without retraining.
 
 ---
 
