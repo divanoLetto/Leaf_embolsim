@@ -16,7 +16,7 @@ cumulative embolised area and the vulnerability-curve dynamics.
 Imaging setup: Cavicam / Raspberry Pi Camera v2 (IMX219), ~5-minute intervals,
 fixed LED illumination.
 
-![Prediction demo](images/demo.gif)
+<img src="images/demo.gif" width="100%" alt="Prediction demo"/>
 
 *Two consecutive input frames and the model's predicted embolism mask
 (white = predicted embolism) on one test sequence.*
