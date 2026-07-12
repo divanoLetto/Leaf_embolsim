@@ -83,7 +83,7 @@ data/
         ├── train.py / predict.py / evaluate.py
         ├── run_method.sh           # full pipeline: train → predict → evaluate
         ├── checkpoints/             # trained weights (best_model.pt) + curves
-        └── learning_curve/          # data-scaling experiment (see its README)
+        └── learning_curve/          # data-scaling experiment
 ```
 
 Generated outputs (`outputs/`, `evaluation/`, `learning_curve/runs/`, …) are
@@ -129,13 +129,6 @@ Or the whole pipeline in a single command:
 bash src/method/run_method.sh                    # extra flags are forwarded to train.py, e.g.:
 bash src/method/run_method.sh --epochs 200 --batch-size 8
 ```
-
----
-
-## Learning-curve experiment
-
-Measures performance as a function of the number of training sequences (fixed
-val/test). See [src/method/learning_curve/README.md](src/method/learning_curve/README.md).
 
 ---
 
