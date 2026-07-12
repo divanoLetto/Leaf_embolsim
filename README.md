@@ -1,5 +1,10 @@
 # Leaf embolism segmentation
 
+## Authors: Lorenzo Mandelli, Kate M. Johnson, Maurizio Mencuccini, Stefano Berretti
+#### CREAF, Università degli Studi di Firenze
+
+![](https://img.shields.io/github/contributors/divanoLetto/Leaf_embolsim?color=light%20green) ![](https://img.shields.io/github/repo-size/divanoLetto/Leaf_embolsim?cacheSeconds=60)
+
 Deep-learning segmentation of **embolism events** in time-lapse image sequences
 of drying leaves. A U-Net receives two consecutive frames (`frame_t`,
 `frame_{t+1}`) and predicts the pixels that became **newly embolised** between
