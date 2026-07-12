@@ -3,6 +3,8 @@
 ## Authors: Lorenzo Mandelli, Kate M. Johnson, Maurizio Mencuccini, Stefano Berretti
 #### CREAF, Università degli Studi di Firenze
 
+![Architecture](images/architecture_1.png)
+
 ![](https://img.shields.io/github/contributors/divanoLetto/Leaf_embolsim?color=light%20green) ![](https://img.shields.io/github/repo-size/divanoLetto/Leaf_embolsim?cacheSeconds=60)
 
 Deep-learning segmentation of **embolism events** in time-lapse image sequences
@@ -13,6 +15,11 @@ cumulative embolised area and the vulnerability-curve dynamics.
 
 Imaging setup: Cavicam / Raspberry Pi Camera v2 (IMX219), ~5-minute intervals,
 fixed LED illumination.
+
+![Prediction demo](images/demo.gif)
+
+*Two consecutive input frames and the model's predicted embolism mask
+(white = predicted embolism) on one test sequence.*
 
 ---
 
