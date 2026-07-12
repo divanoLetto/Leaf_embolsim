@@ -16,50 +16,15 @@ fixed LED illumination.
 
 ---
 
-## Method
+## Installation
 
-The model lives in `src/method/` — a U-Net with the following configuration:
-
-- **Model** — U-Net, 6-channel input (two RGB frames concatenated), 1-channel
-  sigmoid output. Encoder `6 → 32 → 64 → 128`, bottleneck `256`, symmetric
-  decoder with `Dropout2d` (spatial dropout) in each decoder block.
-- **Loss** — combined **Focal + Dice** (0.5 / 0.5).
-- **Regularisation** — dropout (p=0.3), weight decay (1e-4), early stopping
-  (patience 15).
-- **Augmentation** — physically calibrated to the Cavicam/RPi setup: per-frame
-  brightness & shot noise (independent), shared gamma / white-balance / fine
-  rotation, and joint elastic deformation. See [src/method/dataset.py](src/method/dataset.py).
-- **Class imbalance** — patch oversampling around embolism pixels.
-
-All hyper-parameters live in [src/method/config.py](src/method/config.py).
-
----
-
-## Repository structure
-
-```
-.
-├── train.txt / val.txt / test.txt   # dataset splits (sequence names)
-├── make_video.py                    # utility: PNG frames → video (ffmpeg)
-├── requirements.txt
-├── results/                         # curated result figures (see below)
-├── data/                            # dataset — NOT included, provide locally
-└── src/
-    ├── check_data.py                # dataset integrity checker
-    ├── make_splits.py               # regenerates train/val/test.txt
-    └── method/
-        ├── config.py                # all hyper-parameters and paths
-        ├── model.py                 # U-Net
-        ├── losses.py                # Focal + Dice
-        ├── dataset.py               # dataset + calibrated augmentation
-        ├── train.py / predict.py / evaluate.py
-        ├── run_method.sh           # full pipeline: train → predict → evaluate
-        ├── checkpoints/             # trained weights (best_model.pt) + curves
-        └── learning_curve/          # data-scaling experiment (see its README)
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-Generated outputs (`outputs/`, `evaluation/`, `learning_curve/runs/`, …) are
-`.gitignore`d — they are reproduced by running the pipeline.
+For a CUDA build of PyTorch, install `torch` following the
+[official instructions](https://pytorch.org/get-started/locally/) first.
 
 ---
 
@@ -100,15 +65,31 @@ data/
 
 ---
 
-## Installation
+## Repository structure
 
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+```
+.
+├── train.txt / val.txt / test.txt   # dataset splits (sequence names)
+├── make_video.py                    # utility: PNG frames → video (ffmpeg)
+├── requirements.txt
+├── results/                         # curated result figures (see below)
+├── data/                            # dataset — download from Hugging Face (see Dataset)
+└── src/
+    ├── check_data.py                # dataset integrity checker
+    ├── make_splits.py               # regenerates train/val/test.txt
+    └── method/
+        ├── config.py                # all hyper-parameters and paths
+        ├── model.py                 # U-Net (6-ch input, Focal + Dice loss)
+        ├── losses.py                # Focal + Dice
+        ├── dataset.py               # dataset + calibrated augmentation
+        ├── train.py / predict.py / evaluate.py
+        ├── run_method.sh           # full pipeline: train → predict → evaluate
+        ├── checkpoints/             # trained weights (best_model.pt) + curves
+        └── learning_curve/          # data-scaling experiment (see its README)
 ```
 
-For a CUDA build of PyTorch, install `torch` following the
-[official instructions](https://pytorch.org/get-started/locally/) first.
+Generated outputs (`outputs/`, `evaluation/`, `learning_curve/runs/`, …) are
+`.gitignore`d — they are reproduced by running the pipeline.
 
 ---
 
