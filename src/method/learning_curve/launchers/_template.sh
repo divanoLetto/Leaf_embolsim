@@ -9,8 +9,8 @@
 #   - altrimenti allena, predice, valuta, e salva wp_metric.json.
 #
 # Output:
-#   - risultati per-run    : src/method4/learning_curve/runs/N{N}_seed{S}/
-#   - log testuale per-run : src/method4/learning_curve/logs/N{N}_seed{S}.log
+#   - risultati per-run    : src/method/learning_curve/runs/N{N}_seed{S}/
+#   - log testuale per-run : src/method/learning_curve/logs/N{N}_seed{S}.log
 #
 # Sicuro da killare: al rilancio i run già finiti vengono saltati.
 
@@ -60,7 +60,7 @@ for S in "${SEEDS[@]}"; do
     echo "  log → ${LOG}"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     START=$(date +%s)
-    python3 src/method4/learning_curve/run_one.py --n "${N}" --seed "${S}" "${EXTRA[@]}" 2>&1 | tee "${LOG}"
+    python3 src/method/learning_curve/run_one.py --n "${N}" --seed "${S}" "${EXTRA[@]}" 2>&1 | tee "${LOG}"
     RC=${PIPESTATUS[0]}
     END=$(date +%s)
     ELAPSED=$(( END - START ))

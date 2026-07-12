@@ -21,7 +21,7 @@ Output (in learning_curve/diagnostics/):
   - shortlist.txt   (human-readable, sospetti ordinati per evidenza)
 
 Run (da repo root):
-  python src/method4/learning_curve/diagnose_toxic.py
+  python src/method/learning_curve/diagnose_toxic.py
 """
 
 import csv

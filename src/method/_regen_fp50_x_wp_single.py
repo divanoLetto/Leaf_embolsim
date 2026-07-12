@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.evaluate import _excel_wp_series, _fp50_frame
+from method import config
+from method.evaluate import _excel_wp_series, _fp50_frame
 
 SEQ = "Senecio_16_05_L3_Cavicam13_090725"
 

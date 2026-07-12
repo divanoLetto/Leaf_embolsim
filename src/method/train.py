@@ -1,7 +1,7 @@
 """
-train.py — Method 4: U-Net training with improved regularisation.
+train.py — U-Net training with improved regularisation.
 
-Changes vs Method 2:
+Key design choices:
   - Weight decay on Adam (WEIGHT_DECAY)
   - Early stopping: training halts when val loss does not improve for
     EARLY_STOP_PATIENCE epochs (with minimum delta EARLY_STOP_MIN_DELTA).
@@ -9,8 +9,8 @@ Changes vs Method 2:
   - EPOCHS is an upper bound; the effective number of epochs is printed at the end.
 
 Usage (from project root):
-    python src/method4/train.py
-    python src/method4/train.py --epochs 200 --lr 5e-5 --batch-size 4
+    python src/method/train.py
+    python src/method/train.py --epochs 200 --lr 5e-5 --batch-size 4
 """
 
 import argparse
@@ -24,10 +24,10 @@ import torch
 from torch.utils.data import DataLoader
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.dataset import LeafPairDataset, load_split, make_loader
-from method4.model import UNet
-from method4.losses import CombinedLoss
+from method import config
+from method.dataset import LeafPairDataset, load_split, make_loader
+from method.model import UNet
+from method.losses import CombinedLoss
 
 
 # ---------------------------------------------------------------------------
@@ -84,7 +84,7 @@ def val_epoch(model, loader, criterion, device):
 # ---------------------------------------------------------------------------
 
 def _setup_logger(log_path: str) -> logging.Logger:
-    logger = logging.getLogger("method4.train")
+    logger = logging.getLogger("method.train")
     logger.setLevel(logging.INFO)
     logger.handlers.clear()
     fh = logging.FileHandler(log_path, mode="w")
@@ -267,7 +267,7 @@ def _save_loss_curve(history: dict, out_dir: str, best_epoch: int = None, log=No
                        label=f"Best (ep {best_epoch})")
         ax.set_xlabel("Epoch")
         ax.set_ylabel("Combined loss (Focal + Dice)")
-        ax.set_title("Method 4 — Training curve")
+        ax.set_title("Training curve")
         ax.legend()
         ax.grid(True, alpha=0.3)
         fig.tight_layout()
@@ -284,7 +284,7 @@ def _save_loss_curve(history: dict, out_dir: str, best_epoch: int = None, log=No
 # ---------------------------------------------------------------------------
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Train Method 4 U-Net.")
+    p = argparse.ArgumentParser(description="Train the U-Net.")
     p.add_argument("--epochs",               type=int,   default=config.EPOCHS)
     p.add_argument("--lr",                   type=float, default=config.LR)
     p.add_argument("--batch-size",           type=int,   default=config.BATCH_SIZE)

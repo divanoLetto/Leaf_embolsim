@@ -7,8 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.evaluate import _excel_wp_series, _fp50_frame
+from method import config
+from method.evaluate import _excel_wp_series, _fp50_frame
 
 
 def _read_cum_area(seq_name):
@@ -106,7 +106,7 @@ def main():
     ax.invert_xaxis()
     ax.set_xlabel("Water Potential (MPa)")
     ax.set_ylabel("% Embolism")
-    ax.set_title("Method 4 — Avg FP50 vs water potential")
+    ax.set_title("Avg FP50 vs water potential")
     ax.set_ylim(0, 105)
     ax.legend(loc="upper left", fontsize=8)
     fig.tight_layout()

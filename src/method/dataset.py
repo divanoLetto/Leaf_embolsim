@@ -1,5 +1,5 @@
 """
-dataset.py — Method 4: Dataset with physics-calibrated augmentation.
+dataset.py — Dataset with physics-calibrated augmentation.
 
 Augmentation rationale (Cavicam / RPi Camera v2, 5-minute intervals)
 ---------------------------------------------------------------------
@@ -20,10 +20,10 @@ so brightness is stable within a session. The main real-world variation sources 
   4. Random spatial flips and 90° rotations → JOINT, increase inter-sequence
      geometric diversity (different mount angles, different leaf orientations).
 
-Functions that changed vs Method 2
+Key augmentation notes
 ------------------------------------
   _augment() — completely rewritten with the calibrated augmentation strategy.
-  Everything else is identical to Method 2.
+  
 """
 
 import json
@@ -39,11 +39,11 @@ from PIL import Image, ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
+from method import config
 
 
 # ---------------------------------------------------------------------------
-# Low-level I/O helpers  (unchanged from Method 2)
+# Low-level I/O helpers
 # ---------------------------------------------------------------------------
 
 def _list_frames(seq_dir: str) -> List[str]:
@@ -227,7 +227,7 @@ def load_split(split_file: str) -> List[str]:
 
 
 # ---------------------------------------------------------------------------
-# Augmentation  (new in Method 4)
+# Augmentation
 # ---------------------------------------------------------------------------
 
 def _elastic_deformation(
@@ -378,7 +378,7 @@ def _augment(
 
 
 # ---------------------------------------------------------------------------
-# Core dataset class  (identical to Method 2 except _augment call)
+# Core dataset class  (calibrated augmentation)
 # ---------------------------------------------------------------------------
 
 class LeafPairDataset:

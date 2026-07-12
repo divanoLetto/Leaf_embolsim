@@ -1,4 +1,4 @@
-Aggregate Evaluation Summary — Method 4
+Aggregate Evaluation Summary
 ============================================================
 Sequences evaluated: 13
 

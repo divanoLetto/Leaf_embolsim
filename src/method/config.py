@@ -1,7 +1,7 @@
 """
-config.py — Method 4: U-Net with improved regularisation and augmentation.
+config.py — U-Net with improved regularisation and augmentation.
 
-Changes vs Method 2:
+Key design choices:
   - Dropout2d in decoder (p=0.3)
   - Weight decay on Adam (1e-4)
   - Early stopping (patience=15)

@@ -2,17 +2,17 @@
 run_one.py — One learning-curve run: train + predict + evaluate for a given (N, seed).
 
 All outputs go to:
-    src/method4/learning_curve/runs/N{N}_seed{S}/{checkpoints,outputs,evaluation}/
+    src/method/learning_curve/runs/N{N}_seed{S}/{checkpoints,outputs,evaluation}/
 
-The original src/method4/outputs/ and src/method4/evaluation/ produced by the
+The original src/method/outputs/ and src/method/evaluation/ produced by the
 full 46-sample run are NEVER touched. We achieve this by monkey-patching the
-relevant paths on `method4.config` before invoking train/predict/evaluate.
+relevant paths on `method.config` before invoking train/predict/evaluate.
 
 Resumability: skipped if runs/N{N}_seed{S}/evaluation/summary_avg.csv exists.
 
 Run (from project root):
-    python src/method4/learning_curve/run_one.py --n 8 --seed 0
-    python src/method4/learning_curve/run_one.py --n 8 --seed 0 --force
+    python src/method/learning_curve/run_one.py --n 8 --seed 0
+    python src/method/learning_curve/run_one.py --n 8 --seed 0 --force
 """
 
 import argparse
@@ -29,8 +29,8 @@ sys.path.insert(0, SRC_DIR)
 
 
 def _patch_config(run_dir: str, train_split_file: str):
-    """Redirect method4.config paths to the per-run directory."""
-    from method4 import config
+    """Redirect method.config paths to the per-run directory."""
+    from method import config
     config.TRAIN_SPLIT_FILE = train_split_file
     config.CHECKPOINT_DIR   = os.path.join(run_dir, "checkpoints")
     config.OUTPUT_DIR       = os.path.join(run_dir, "outputs")
@@ -42,7 +42,7 @@ def _patch_config(run_dir: str, train_split_file: str):
 
 
 def _do_train(args):
-    from method4 import train as train_mod
+    from method import train as train_mod
 
     class A:
         epochs              = args.epochs
@@ -58,7 +58,7 @@ def _do_train(args):
 
 
 def _do_predict_all(test_seqs):
-    from method4 import predict as predict_mod
+    from method import predict as predict_mod
 
     class A:
         all      = False
@@ -76,13 +76,13 @@ def _predict_single(predict_mod, seq_name):
     # The current predict.py uses argparse + __main__, so call its __main__-equivalent.
     import runpy
     sys.argv = ["predict.py", "--sequence", seq_name]
-    runpy.run_module("method4.predict", run_name="__main__")
+    runpy.run_module("method.predict", run_name="__main__")
 
 
 def _do_evaluate_all():
     import runpy
     sys.argv = ["evaluate.py", "--all"]
-    runpy.run_module("method4.evaluate", run_name="__main__")
+    runpy.run_module("method.evaluate", run_name="__main__")
 
 
 def _load_test_seqs():
@@ -94,7 +94,7 @@ def _compute_wp_metric(eval_dir: str) -> dict:
     """Compute avg wp at fp50 (pred and GT mask) from summary_avg.csv +
     Excel lookup. Mirrors evaluate._save_avg_fp50_x_wp_plot logic."""
     import csv
-    from method4.evaluate import _excel_wp_series
+    from method.evaluate import _excel_wp_series
 
     csv_path = os.path.join(eval_dir, "summary_avg.csv")
     if not os.path.exists(csv_path):
@@ -149,7 +149,7 @@ def parse_args():
     p.add_argument("--skip-predict",  action="store_true")
     p.add_argument("--skip-evaluate", action="store_true")
     # Pass-through to train.py defaults (from config)
-    from method4 import config as _cfg
+    from method import config as _cfg
     p.add_argument("--epochs",       type=int,   default=_cfg.EPOCHS)
     p.add_argument("--lr",           type=float, default=_cfg.LR)
     p.add_argument("--batch-size",   type=int,   default=_cfg.BATCH_SIZE)
@@ -167,7 +167,7 @@ def main() -> int:
     subset_file = os.path.join(THIS_DIR, "subsets", f"train_N{args.n}_seed{args.seed}.txt")
     if not os.path.exists(subset_file):
         print(f"[ERROR] subset file not found: {subset_file}\n"
-              f"        Run: python src/method4/learning_curve/make_subsets.py", file=sys.stderr)
+              f"        Run: python src/method/learning_curve/make_subsets.py", file=sys.stderr)
         return 1
 
     run_dir = os.path.join(THIS_DIR, "runs", f"N{args.n}_seed{args.seed}")
@@ -206,7 +206,7 @@ def main() -> int:
             print(f"  → {seq}")
             import runpy
             sys.argv = ["predict.py", "--sequence", seq]
-            runpy.run_module("method4.predict", run_name="__main__")
+            runpy.run_module("method.predict", run_name="__main__")
 
     if not args.skip_evaluate:
         print("\n=== STEP 3/3 — Evaluating ===")

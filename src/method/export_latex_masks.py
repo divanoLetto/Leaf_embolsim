@@ -1,5 +1,5 @@
 """
-export_latex_masks.py — Method 4: export cumulative-mask panels for LaTeX.
+export_latex_masks.py — export cumulative-mask panels for LaTeX.
 
 For every sequence folder under evaluation/ this writes two clean PNGs into
 latex/:
@@ -11,7 +11,7 @@ These are exactly the first two panels of evaluation/{seq}/cumulative_mask.png
 drop straight into a figure.
 
 Usage (from project root):
-    python src/method4/export_latex_masks.py
+    python src/method/export_latex_masks.py
 """
 
 import os
@@ -21,8 +21,8 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.dataset import _list_frames, _list_masks, _load_mask
+from method import config
+from method.dataset import _list_frames, _list_masks, _load_mask
 
 
 def _cumulative_unions(seq_name: str):

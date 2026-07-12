@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# run_method4.sh — Full Method 4 pipeline: train → predict → evaluate
+# run_method.sh — Full pipeline: train → predict → evaluate
 #
 # Run from project root:
-#   bash src/method4/run_method4.sh
-#   bash src/method4/run_method4.sh --epochs 200 --batch-size 8
+#   bash src/method/run_method.sh
+#   bash src/method/run_method.sh --epochs 200 --batch-size 8
 #
 # All extra flags are forwarded to train.py.
 
@@ -31,9 +31,9 @@ if [[ ${#TEST_SEQS[@]} -eq 0 ]]; then
 fi
 
 echo ""
-echo "╔══════════════════════════════════════════════════════════╗"
-echo "║  Method 4 — U-Net + Dropout + WeightDecay + EarlyStop  ║"
-echo "╚══════════════════════════════════════════════════════════╝"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  U-Net pipeline — train → predict → evaluate"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  Test sequences (${#TEST_SEQS[@]}):"
 for seq in "${TEST_SEQS[@]}"; do echo "    ${seq}"; done
 echo ""
@@ -41,7 +41,7 @@ echo ""
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  STEP 1 / 3 — Training"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-python3 src/method4/train.py "${@}"
+python3 src/method/train.py "${@}"
 echo ""
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
@@ -49,20 +49,20 @@ echo "  STEP 2 / 3 — Inference on test set (${#TEST_SEQS[@]} sequences)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 for seq in "${TEST_SEQS[@]}"; do
     echo "  → ${seq}"
-    python3 src/method4/predict.py --sequence "${seq}"
+    python3 src/method/predict.py --sequence "${seq}"
 done
 echo ""
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  STEP 3 / 3 — Evaluation"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-python3 src/method4/evaluate.py --all
+python3 src/method/evaluate.py --all
 echo ""
 
 echo "╔══════════════════════════════════════════════════════════╗"
 echo "║  Pipeline complete.                                      ║"
-echo "║  Outputs:     src/method4/outputs/<sequence>/           ║"
-echo "║  Evaluation:  src/method4/evaluation/<sequence>/        ║"
-echo "║  Aggregate:   src/method4/evaluation/summary_avg.txt    ║"
-echo "║  Checkpoints: src/method4/checkpoints/                  ║"
+echo "║  Outputs:     src/method/outputs/<sequence>/           ║"
+echo "║  Evaluation:  src/method/evaluation/<sequence>/        ║"
+echo "║  Aggregate:   src/method/evaluation/summary_avg.txt    ║"
+echo "║  Checkpoints: src/method/checkpoints/                  ║"
 echo "╚══════════════════════════════════════════════════════════╝"

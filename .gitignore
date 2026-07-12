@@ -5,14 +5,14 @@
 /trash/
 
 # ---------------------------------------------------------------------------
-# Generated outputs of Method 4 (regenerable via run_method4.sh)
+# Generated outputs of the model (regenerable via run_method.sh)
 # Kept locally, excluded from git.
 # ---------------------------------------------------------------------------
-/src/method4/outputs/
-/src/method4/evaluation/
-/src/method4/latex/
-/src/method4/learning_curve/runs/
-/src/method4/learning_curve/logs/
+/src/method/outputs/
+/src/method/evaluation/
+/src/method/latex/
+/src/method/learning_curve/runs/
+/src/method/learning_curve/logs/
 
 # ---------------------------------------------------------------------------
 # Python

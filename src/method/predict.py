@@ -1,9 +1,9 @@
 """
-predict.py — Method 4: Full-sequence inference.
+predict.py — Full-sequence inference.
 
 Usage (from project root):
-    python src/method4/predict.py --sequence Senecio_17_11_L5_Cavicam12_210725
-    python src/method4/predict.py --all
+    python src/method/predict.py --sequence Senecio_17_11_L5_Cavicam12_210725
+    python src/method/predict.py --all
 """
 
 import argparse
@@ -15,9 +15,9 @@ import torch
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.dataset import _list_frames, _list_masks, _load_rgb, _load_mask, find_sequences
-from method4.model import UNet
+from method import config
+from method.dataset import _list_frames, _list_masks, _load_rgb, _load_mask, find_sequences
+from method.model import UNet
 
 
 def load_model(device: torch.device) -> torch.nn.Module:
@@ -163,7 +163,7 @@ def predict_sequence(
 
 
 def parse_args():
-    p = argparse.ArgumentParser(description="Run Method 4 inference.")
+    p = argparse.ArgumentParser(description="Run inference.")
     g = p.add_mutually_exclusive_group(required=True)
     g.add_argument("--sequence", "-s")
     g.add_argument("--all", "-a", action="store_true")

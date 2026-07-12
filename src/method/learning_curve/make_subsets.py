@@ -6,10 +6,10 @@ entries become the subset for size N. By construction, subset(N) is a prefix of
 subset(M) when N < M and the same seed is used — i.e. nested subsets.
 
 Outputs (one file per (N, seed)):
-    src/method4/learning_curve/subsets/train_N{N}_seed{S}.txt
+    src/method/learning_curve/subsets/train_N{N}_seed{S}.txt
 
 Run (from project root):
-    python src/method4/learning_curve/make_subsets.py
+    python src/method/learning_curve/make_subsets.py
 """
 
 import os

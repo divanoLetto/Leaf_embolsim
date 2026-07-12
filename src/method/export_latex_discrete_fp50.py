@@ -1,5 +1,5 @@
 """
-export_latex_discrete_fp50.py — Method 4: discrete FP50 plot for LaTeX.
+export_latex_discrete_fp50.py — discrete FP50 plot for LaTeX.
 
 Reproduces evaluation/{seq}/discrete_fp50.png but WITHOUT the "fp50 GT Excel"
 vertical line. Saved to latex/{seq}_discrete_fp50.png.
@@ -8,7 +8,7 @@ Cumulative areas are read back from evaluation/{seq}/cumulative_area.csv, so the
 full evaluation does not need to be re-run.
 
 Usage (from project root):
-    python src/method4/export_latex_discrete_fp50.py [SEQ_NAME ...]
+    python src/method/export_latex_discrete_fp50.py [SEQ_NAME ...]
 
 With no arguments it defaults to Senecio_16_05_L3_Cavicam13_090725.
 """
@@ -18,8 +18,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.evaluate import _fp50_frame
+from method import config
+from method.evaluate import _fp50_frame
 
 DEFAULT_SEQS = ["Senecio_16_05_L3_Cavicam13_090725"]
 

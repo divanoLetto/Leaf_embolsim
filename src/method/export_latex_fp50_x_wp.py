@@ -1,5 +1,5 @@
 """
-export_latex_fp50_x_wp.py — Method 4: FP50-vs-water-potential plot for LaTeX.
+export_latex_fp50_x_wp.py — FP50-vs-water-potential plot for LaTeX.
 
 Reproduces evaluation/fp50_x_wp_avg.png but WITHOUT the "fp50 GT Excel avg"
 vertical line. Saved to latex/fp50_x_wp_avg.png.
@@ -9,7 +9,7 @@ evaluation/{seq}/cumulative_area.csv, so the full evaluation does not need to
 be re-run.
 
 Usage (from project root):
-    python src/method4/export_latex_fp50_x_wp.py
+    python src/method/export_latex_fp50_x_wp.py
 """
 
 import csv
@@ -19,8 +19,8 @@ import sys
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.evaluate import _excel_wp_series, _fp50_frame
+from method import config
+from method.evaluate import _excel_wp_series, _fp50_frame
 
 
 def _read_cum_area(seq_name: str):
@@ -150,7 +150,7 @@ def main():
 
     out_path = os.path.join(latex_dir, "fp50_x_wp_avg.png")
     _save_plot(all_pred_cum, all_gt_cum, names,
-               title="Method 4 — Avg FP50 vs water potential",
+               title="Avg FP50 vs water potential",
                out_path=out_path)
     print(f"\nWrote {out_path} ({len(names)} sequence(s))")
 

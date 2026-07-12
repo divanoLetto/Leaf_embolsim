@@ -1,12 +1,12 @@
 """
-evaluate.py — Method 4: Quantitative evaluation of predicted incremental masks.
+evaluate.py — Quantitative evaluation of predicted incremental masks.
 
-Identical to Method 2 evaluate.py except all imports and references point to method4.
+
 
 Usage (from project root):
-    python src/method4/evaluate.py --sequence Senecio_17_11_L5_Cavicam12_210725
-    python src/method4/evaluate.py --all
-    python src/method4/evaluate.py --sequence ... --vis-every 5
+    python src/method/evaluate.py --sequence Senecio_17_11_L5_Cavicam12_210725
+    python src/method/evaluate.py --all
+    python src/method/evaluate.py --sequence ... --vis-every 5
 """
 
 import argparse
@@ -19,8 +19,8 @@ from PIL import Image
 from scipy.ndimage import label as _cc_label
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from method4 import config
-from method4.dataset import _list_frames, _list_masks, _load_rgb, _load_mask, find_sequences
+from method import config
+from method.dataset import _list_frames, _list_masks, _load_rgb, _load_mask, find_sequences
 
 
 def _particles_area(mask: np.ndarray, min_size: int = 80) -> int:
@@ -216,7 +216,7 @@ def trapz_auc(values):
 
 
 # ---------------------------------------------------------------------------
-# Visualisation  (identical to Method 2)
+# Visualisation
 # ---------------------------------------------------------------------------
 
 def _viridis(arr_01: np.ndarray) -> np.ndarray:
@@ -366,7 +366,7 @@ def _make_video(vis_dir: str, out_dir: str, fps: int = 4) -> None:
 # ---------------------------------------------------------------------------
 
 def _get_logger(log_path: str) -> logging.Logger:
-    logger = logging.getLogger("method4.evaluate")
+    logger = logging.getLogger("method.evaluate")
     logger.setLevel(logging.INFO)
     logger.handlers.clear()
     fh = logging.FileHandler(log_path, mode="a")
@@ -871,7 +871,7 @@ def _write_aggregate(results: list, eval_dir: str, log=None):
             w.writerow(r)
 
     txt_lines = [
-        "Aggregate Evaluation Summary — Method 4",
+        "Aggregate Evaluation Summary",
         "=" * 60,
         f"Sequences evaluated: {len(results)}",
         "",
@@ -902,13 +902,13 @@ def _write_aggregate(results: list, eval_dir: str, log=None):
     _save_avg_cum_plot(
         [r["pred_cum_area"] for r in results],
         [r["gt_cum_area"]   for r in results],
-        title="Method 4 — Avg cumulative embolism area",
+        title="Avg cumulative embolism area",
         out_path=os.path.join(eval_dir, "cumulative_area_avg.png"),
     )
     _save_avg_fp50_plot(
         [r["pred_cum_area"] for r in results],
         [r["gt_cum_area"]   for r in results],
-        title="Method 4 — Avg discrete FP50",
+        title="Avg discrete FP50",
         out_path=os.path.join(eval_dir, "discrete_fp50_avg.png"),
         seq_names=[r["seq_name"] for r in results],
     )
@@ -916,7 +916,7 @@ def _write_aggregate(results: list, eval_dir: str, log=None):
         [r["pred_cum_area"] for r in results],
         [r["gt_cum_area"]   for r in results],
         seq_names=[r["seq_name"] for r in results],
-        title="Method 4 — Avg FP50 vs water potential",
+        title="Avg FP50 vs water potential",
         out_path=os.path.join(eval_dir, "fp50_x_wp_avg.png"),
     )
 

@@ -1,5 +1,5 @@
 """
-losses.py — Combined Focal + Dice loss. Identical to Method 2.
+losses.py — Combined Focal + Dice loss.
 """
 
 import torch

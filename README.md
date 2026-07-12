@@ -13,7 +13,7 @@ fixed LED illumination.
 
 ## Method
 
-This repository contains **Method 4**, the final configuration:
+The model lives in `src/method/` — a U-Net with the following configuration:
 
 - **Model** — U-Net, 6-channel input (two RGB frames concatenated), 1-channel
   sigmoid output. Encoder `6 → 32 → 64 → 128`, bottleneck `256`, symmetric
@@ -23,10 +23,10 @@ This repository contains **Method 4**, the final configuration:
   (patience 15).
 - **Augmentation** — physically calibrated to the Cavicam/RPi setup: per-frame
   brightness & shot noise (independent), shared gamma / white-balance / fine
-  rotation, and joint elastic deformation. See [src/method4/dataset.py](src/method4/dataset.py).
+  rotation, and joint elastic deformation. See [src/method/dataset.py](src/method/dataset.py).
 - **Class imbalance** — patch oversampling around embolism pixels.
 
-All hyper-parameters live in [src/method4/config.py](src/method4/config.py).
+All hyper-parameters live in [src/method/config.py](src/method/config.py).
 
 ---
 
@@ -42,13 +42,13 @@ All hyper-parameters live in [src/method4/config.py](src/method4/config.py).
 └── src/
     ├── check_data.py                # dataset integrity checker
     ├── make_splits.py               # regenerates train/val/test.txt
-    └── method4/
+    └── method/
         ├── config.py                # all hyper-parameters and paths
         ├── model.py                 # U-Net
         ├── losses.py                # Focal + Dice
         ├── dataset.py               # dataset + calibrated augmentation
         ├── train.py / predict.py / evaluate.py
-        ├── run_method4.sh           # full pipeline: train → predict → evaluate
+        ├── run_method.sh           # full pipeline: train → predict → evaluate
         ├── checkpoints/             # trained weights (best_model.pt) + curves
         └── learning_curve/          # data-scaling experiment (see its README)
 ```
@@ -106,24 +106,24 @@ Run everything from the repository root.
 **Full pipeline** (train → predict on the test set → evaluate):
 
 ```bash
-bash src/method4/run_method4.sh
+bash src/method/run_method.sh
 # forward flags to training, e.g.:
-bash src/method4/run_method4.sh --epochs 200 --batch-size 8
+bash src/method/run_method.sh --epochs 200 --batch-size 8
 ```
 
 **Individual steps:**
 
 ```bash
-python src/method4/train.py                                   # train
-python src/method4/predict.py --sequence <SEQUENCE_NAME>      # or --all
-python src/method4/evaluate.py --all                          # metrics + figures
+python src/method/train.py                                   # train
+python src/method/predict.py --sequence <SEQUENCE_NAME>      # or --all
+python src/method/evaluate.py --all                          # metrics + figures
 ```
 
-Outputs are written to `src/method4/{outputs,evaluation}/`; checkpoints to
-`src/method4/checkpoints/`.
+Outputs are written to `src/method/{outputs,evaluation}/`; checkpoints to
+`src/method/checkpoints/`.
 
 A pre-trained checkpoint is included at
-[src/method4/checkpoints/best_model.pt](src/method4/checkpoints/best_model.pt),
+[src/method/checkpoints/best_model.pt](src/method/checkpoints/best_model.pt),
 so `predict.py` / `evaluate.py` can be run without retraining.
 
 ---
@@ -131,7 +131,7 @@ so `predict.py` / `evaluate.py` can be run without retraining.
 ## Learning-curve experiment
 
 Measures performance as a function of the number of training sequences (fixed
-val/test). See [src/method4/learning_curve/README.md](src/method4/learning_curve/README.md).
+val/test). See [src/method/learning_curve/README.md](src/method/learning_curve/README.md).
 
 ---
 

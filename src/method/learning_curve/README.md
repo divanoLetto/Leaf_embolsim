@@ -1,4 +1,4 @@
-# Learning-curve experiment — Method 4
+# Learning-curve experiment
 
 Esperimento per misurare la performance del modello al variare del numero di
 sequenze di training. Test e validation rimangono fissi (`test.txt`, `val.txt`).
@@ -18,8 +18,8 @@ learning_curve/
     └── wp_metric.json     # |wp_pred − wp_GT| calcolato qui
 ```
 
-I path canonici `src/method4/{checkpoints,outputs,evaluation}/` del run full
-**non vengono toccati** — vengono monkey-patchati su `method4.config` solo per
+I path canonici `src/method/{checkpoints,outputs,evaluation}/` del run full
+**non vengono toccati** — vengono monkey-patchati su `method.config` solo per
 la durata del run.
 
 ## Design
@@ -45,7 +45,7 @@ la durata del run.
 ### 1) Genera i sottoinsiemi (una sola volta)
 
 ```bash
-python src/method4/learning_curve/make_subsets.py
+python src/method/learning_curve/make_subsets.py
 ```
 
 Produce 8 × 3 = 24 file in `subsets/`.
@@ -56,23 +56,23 @@ Tre modi, dal più automatico al più manuale.
 
 **(a) Tutto in sequenza, set-and-forget** (~48h, ~2 giorni):
 ```bash
-bash src/method4/learning_curve/launchers/run_all.sh
+bash src/method/learning_curve/launchers/run_all.sh
 ```
 Lancia N=4 → N=8 → ... → N=46 nell'ordine. Se interrompi a metà, al rilancio
 salta i run già finiti grazie alla resumability.
 
 **(b) Un blocco N alla volta** (utile per fermarsi tra un N e l'altro):
 ```bash
-bash src/method4/learning_curve/launchers/run_N4.sh    # ~3h  (5 seed)
-bash src/method4/learning_curve/launchers/run_N8.sh    # ~4h  (4 seed)
-bash src/method4/learning_curve/launchers/run_N12.sh   # ~4.5h (3 seed)
+bash src/method/learning_curve/launchers/run_N4.sh    # ~3h  (5 seed)
+bash src/method/learning_curve/launchers/run_N8.sh    # ~4h  (4 seed)
+bash src/method/learning_curve/launchers/run_N12.sh   # ~4.5h (3 seed)
 # ... eccetera fino a run_N46.sh
 ```
 Ogni launcher salva un log per-run in `logs/N{N}_seed{S}.log`.
 
 **(c) Singolo run manuale** (debug o re-run mirato):
 ```bash
-python src/method4/learning_curve/run_one.py --n 8 --seed 1
+python src/method/learning_curve/run_one.py --n 8 --seed 1
 ```
 
 **Resumability**: se `runs/N{N}_seed{S}/evaluation/summary_avg.csv` esiste già,
@@ -81,9 +81,9 @@ il run viene saltato. Usa `--force` su `run_one.py` per riallenare comunque.
 **Argomenti extra a train.py** (epochs, lr, batch-size, ...) — passabili in
 tutti i modi:
 ```bash
-python src/method4/learning_curve/run_one.py --n 8 --seed 0 --epochs 100
-bash src/method4/learning_curve/launchers/run_N8.sh -- --epochs 100
-bash src/method4/learning_curve/launchers/run_all.sh -- --batch-size 8
+python src/method/learning_curve/run_one.py --n 8 --seed 0 --epochs 100
+bash src/method/learning_curve/launchers/run_N8.sh -- --epochs 100
+bash src/method/learning_curve/launchers/run_all.sh -- --batch-size 8
 ```
 
 ### 3) Aggrega i risultati
@@ -91,7 +91,7 @@ bash src/method4/learning_curve/launchers/run_all.sh -- --batch-size 8
 A run terminati (anche parzialmente — aggrega quello che trova):
 
 ```bash
-python src/method4/learning_curve/aggregate.py
+python src/method/learning_curve/aggregate.py
 ```
 
 Produce:

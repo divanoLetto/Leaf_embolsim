@@ -3,14 +3,14 @@ aggregate.py — Collect learning-curve results across all runs/ subdirectories
 and produce a CSV + plot.
 
 Scans:
-    src/method4/learning_curve/runs/N{N}_seed{S}/{evaluation/summary_avg.csv,wp_metric.json}
+    src/method/learning_curve/runs/N{N}_seed{S}/{evaluation/summary_avg.csv,wp_metric.json}
 
 Outputs:
-    src/method4/learning_curve/learning_curve.csv
-    src/method4/learning_curve/learning_curve.png
+    src/method/learning_curve/learning_curve.csv
+    src/method/learning_curve/learning_curve.png
 
 Run (from project root):
-    python src/method4/learning_curve/aggregate.py
+    python src/method/learning_curve/aggregate.py
 """
 
 import csv
@@ -143,7 +143,7 @@ def plot(rows):
     axes[1].set_title("Learning curve — mask IoU (higher is better)")
     axes[1].grid(True, alpha=0.3)
 
-    fig.suptitle("Method 4 — learning curve (mean ± std over seeds)")
+    fig.suptitle("learning curve (mean ± std over seeds)")
     fig.tight_layout()
     fig.savefig(OUT_PNG, dpi=140)
     print(f"PNG → {OUT_PNG}")

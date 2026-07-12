@@ -1,7 +1,7 @@
 """
-model.py — Method 4: U-Net with Dropout2d regularisation.
+model.py — U-Net with Dropout2d regularisation.
 
-Changes vs Method 2:
+Key design choices:
   - Dropout2d added after each DecoderBlock conv to prevent spatial
     memorisation of training-set embolism patterns.
   - Dropout is active only during training (nn.Dropout2d respects model.eval()).

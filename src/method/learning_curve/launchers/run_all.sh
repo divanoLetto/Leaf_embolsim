@@ -27,4 +27,4 @@ END=$(date +%s)
 ELAPSED=$(( END - START ))
 echo ""
 echo "TUTTO FINITO. Tempo totale: $(( ELAPSED / 3600 ))h $(( (ELAPSED % 3600) / 60 ))min"
-echo "Lancia ora: python src/method4/learning_curve/aggregate.py"
+echo "Lancia ora: python src/method/learning_curve/aggregate.py"
