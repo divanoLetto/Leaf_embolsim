@@ -7,7 +7,21 @@
 
 ![](https://img.shields.io/github/contributors/divanoLetto/Leaf_embolsim?color=light%20green) ![](https://img.shields.io/github/repo-size/divanoLetto/Leaf_embolsim?cacheSeconds=60)
 
-TODO add abstract or similar 
+Embolism — the formation of air bubbles in a plant's water-transport system — is a
+mechanistic driver of plant death. The Optical Vulnerability Technique (OVT) is an
+imaging method for the non-invasive quantification of embolism, including the commonly
+used drought-vulnerability metric P50, providing detailed spatial and temporal
+information; its major cost lies in the post-processing of thousands of images. Here we
+design, train, test, and publicly release a neural-network model that automates the
+post-processing of OVT images. Using a dataset of 65 leaves from *Senecio pterophorus*
+plants dried to 100% embolism, we compare our model's predictions with results obtained
+via traditional post-processing by an expert. The model resolved P50 to within 0.04 MPa
+of the expert-processed data, demonstrating its promise for increasing the efficiency
+and throughput of P50 calculation, although it did not perfectly replicate the pixels
+constituting the embolism events (mean event-frame IoU of 0.38). We invite the community
+to use our model, but emphasise that it does not replace the expert-processing pipeline
+and that care must be taken when considering when and how to apply this and similar
+approaches to OVT data. 
 
 <img src="images/demo.gif" width="100%" alt="Prediction demo"/>
 
