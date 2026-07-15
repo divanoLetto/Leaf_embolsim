@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leaf Embolism Segmentation</title>
+<meta name="description" content="Deep-learning segmentation of embolism events in time-lapse leaf imaging.">
+<style>
+  :root{
+    --accent:#2e7d32; --bg:#ffffff; --fg:#1a1a1a; --muted:#5f6b5f;
+    --card:#f5f8f5; --border:#e2e8e2;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --accent:#4caf50; --bg:#0f1210; --fg:#e8ece8; --muted:#9aa39a; --card:#161b16; --border:#262c26; }
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:var(--bg); color:var(--fg); line-height:1.65;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 22px; }
+  header{ text-align:center; padding:60px 22px 30px;
+    background:linear-gradient(180deg,var(--card),var(--bg)); border-bottom:1px solid var(--border); }
+  h1{ font-size:clamp(1.8rem,4.5vw,2.7rem); margin:0 0 8px; letter-spacing:-.02em; }
+  .subtitle{ color:var(--muted); font-size:1.08rem; margin:0 auto 20px; max-width:640px; }
+  .authors{ font-size:1.05rem; margin:10px 0 2px; }
+  .affil{ color:var(--muted); font-size:.95rem; margin:4px 0 0; }
+  .btns{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:28px 0 4px; }
+  .btn{ display:inline-flex; align-items:center; gap:9px; padding:11px 22px; border-radius:999px;
+    background:#24292f; color:#fff; text-decoration:none; font-weight:600; font-size:.98rem;
+    transition:transform .06s ease, opacity .2s, box-shadow .2s; box-shadow:0 2px 8px rgba(0,0,0,.12); }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 5px 16px rgba(0,0,0,.18); }
+  .btn svg{ width:18px; height:18px; fill:currentColor; }
+  .btn.paper{ background:var(--accent); }
+  .btn.data{ background:#f59e0b; color:#3a2a00; }
+  section{ padding:36px 0; border-bottom:1px solid var(--border); }
+  section:last-of-type{ border-bottom:none; }
+  section h2{ font-size:1.35rem; margin:0 0 16px; }
+  figure{ margin:0; }
+  figure img{ width:100%; height:auto; border-radius:12px; border:1px solid var(--border); display:block; }
+  figcaption{ color:var(--muted); font-size:.9rem; text-align:center; margin-top:10px; }
+  p{ margin:0 0 14px; }
+  .bib{ background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px; overflow-x:auto; }
+  .bib pre{ margin:0; font-size:.85rem; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  footer{ text-align:center; color:var(--muted); font-size:.9rem; padding:28px 22px 44px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Leaf Embolism Segmentation</h1>
+    <p class="subtitle">Deep-learning detection of embolism events in time-lapse leaf imaging</p>
+    <p class="authors">Lorenzo Mandelli · Kate M. Johnson · Maurizio Mencuccini · Stefano Berretti</p>
+    <p class="affil">CREAF · Università degli Studi di Firenze</p>
+
+    <div class="btns">
+      <!-- TODO: sostituisci "#" con l'URL del paper (arXiv / rivista) quando è pubblicato -->
+      <a class="btn paper" href="#">
+        <svg viewBox="0 0 24 24"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 13h8v1.6H8V13zm0 3.5h8v1.6H8v-1.6z"/></svg>
+        Paper
+      </a>
+      <a class="btn gh" href="https://github.com/divanoLetto/Leaf_embolsim">
+        <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        Code
+      </a>
+      <a class="btn data" href="https://huggingface.co/datasets/LorenzoMande/Leaf_embolism">
+        <svg viewBox="0 0 24 24"><path d="M12 2c4.42 0 8 1.34 8 3v14c0 1.66-3.58 3-8 3s-8-1.34-8-3V5c0-1.66 3.58-3 8-3zm0 2C8.13 4 6 5.03 6 5.5S8.13 7 12 7s6-1.03 6-1.5S15.87 4 12 4zm6 4.36C16.5 9.1 14.4 9.5 12 9.5s-4.5-.4-6-1.14V12c0 .47 2.13 1.5 6 1.5s6-1.03 6-1.5V8.36zM6 14.5V18c0 .47 2.13 1.5 6 1.5s6-1.03 6-1.5v-3.5c-1.5.74-3.6 1.14-6 1.14s-4.5-.4-6-1.14z"/></svg>
+        Dataset
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section>
+    <figure>
+      <img src="images/demo.gif" alt="Prediction demo">
+      <figcaption>Two consecutive input frames and the model's predicted embolism mask on a test sequence.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Overview</h2>
+    <p>A U-Net receives two consecutive frames of a drying leaf and predicts the pixels that became
+    <strong>newly embolised</strong> between them. Aggregating these incremental masks over a sequence
+    reconstructs the cumulative embolised area and the vulnerability-curve dynamics. Imaging setup:
+    Cavicam / Raspberry&nbsp;Pi Camera&nbsp;v2 (IMX219), ~5-minute intervals, fixed LED illumination.</p>
+    <figure>
+      <img src="images/architecture_1.png" alt="Model architecture">
+      <figcaption>Model architecture.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Abstract</h2>
+    <p><em>TODO: add the paper abstract here.</em></p>
+  </section>
+
+  <section>
+    <h2>BibTeX</h2>
+    <div class="bib"><pre>@article{mandelli_leaf_embolism,
+  title   = {Leaf Embolism Segmentation},
+  author  = {Mandelli, Lorenzo and Johnson, Kate M. and Mencuccini, Maurizio and Berretti, Stefano},
+  year    = {2026},
+  note    = {TODO: update with venue / DOI once published}
+}</pre></div>
+  </section>
+</div>
+
+<footer>
+  © 2026 · CREAF · Università degli Studi di Firenze
+</footer>
+</body>
+</html>
