@@ -28,17 +28,27 @@ For a CUDA build of PyTorch, install `torch` following the
 
 ## Dataset
 
-The dataset is available from the authors on reasonable request. It consists of
-one directory per sequence, which the code expects under `data/`:
+A **sample sequence** (one test-set leaf) is available on Hugging Face so you can
+try the pipeline — the **full dataset will be released later**:
+**[LorenzoMande/Leaf_embolism](https://huggingface.co/datasets/LorenzoMande/Leaf_embolism)**
 
+```bash
+pip install huggingface_hub
+hf download LorenzoMande/Leaf_embolism --repo-type dataset --local-dir data_hf
+mkdir -p data
+for f in data_hf/*.tar.gz; do tar xzf "$f" -C data; done   # -> data/<sequence>/
 ```
-data/
-├── Senecio_16_05_L1_Cavicam15_090725/
-│   ├── 20250709-180217.png     # time-lapse frames
-│   ├── ...
-│   └── analysedStack/          # ground-truth mask TIFFs (one per frame pair)
-└── SenecioIVERdroughtVCs.xlsx  # reference vulnerability-curve data
+
+Then run it:
+
+```bash
+python src/method/predict.py  --sequence Senecio_10_11_L3_Cavicam14_160725
+python src/method/evaluate.py --sequence Senecio_10_11_L3_Cavicam14_160725
 ```
+
+Each sequence is a folder of time-lapse `.png` frames plus an `analysedStack/`
+folder of ground-truth mask `.tif`s (one per consecutive frame pair). Water-potential
+metrics additionally use the metadata shipped with the full dataset.
 
 ---
 
