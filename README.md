@@ -28,29 +28,8 @@ For a CUDA build of PyTorch, install `torch` following the
 
 ## Dataset
 
-The dataset is hosted on Hugging Face:
-**[LorenzoMande/Leaf_embolism](https://huggingface.co/datasets/LorenzoMande/Leaf_embolism)**.
-It is stored as one gzipped tarball per sequence (`<sequence>.tar.gz`, containing
-the time-lapse frames and the ground-truth masks) plus the reference spreadsheets.
-
-Download and reconstruct the `data/` folder the code expects:
-
-```bash
-pip install huggingface_hub
-
-# 1. download all sequence archives + spreadsheets
-hf download LorenzoMande/Leaf_embolism --repo-type dataset --local-dir data_hf
-
-# 2. extract each sequence into data/ and add the spreadsheets
-mkdir -p data
-for f in data_hf/*.tar.gz; do tar xzf "$f" -C data; done
-cp data_hf/*.xlsx data/
-```
-
-> Python alternative for step 1:
-> `from huggingface_hub import snapshot_download; snapshot_download("LorenzoMande/Leaf_embolism", repo_type="dataset", local_dir="data_hf")`
-
-Each sequence then looks like:
+The dataset is available from the authors on reasonable request. It consists of
+one directory per sequence, which the code expects under `data/`:
 
 ```
 data/
