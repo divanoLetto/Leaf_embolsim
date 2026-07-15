@@ -108,6 +108,15 @@ def plot(rows):
     if not rows:
         return
 
+    plt.rcParams.update({
+        "font.size":        18,
+        "axes.titlesize":   20,
+        "axes.labelsize":   19,
+        "xtick.labelsize":  16,
+        "ytick.labelsize":  16,
+        "figure.titlesize": 22,
+    })
+
     # Aggregate (mean, std) over seeds for each N
     by_n = {}
     for r in rows:
@@ -125,13 +134,13 @@ def plot(rows):
                 means.append(np.nan); stds.append(0.0)
         return np.array(means), np.array(stds)
 
-    fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
+    fig, axes = plt.subplots(1, 2, figsize=(16, 6))
 
     # Panel 1: |wp_pred - wp_gt|
     m, s = _series("abs_wp_error")
     axes[0].errorbar(ns, m, yerr=s, marker="o", capsize=4, lw=1.5)
     axes[0].set_xlabel("Training set size N")
-    axes[0].set_ylabel("|wp_pred − wp_GT|  (MPa)")
+    axes[0].set_ylabel(r"$|\mathrm{wp}_{\mathrm{pred}} - \mathrm{wp}_{\mathrm{GT}}|$  (MPa)")
     axes[0].set_title("Learning curve — wp error (lower is better)")
     axes[0].grid(True, alpha=0.3)
 

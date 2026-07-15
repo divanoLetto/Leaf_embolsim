@@ -398,17 +398,18 @@ def _save_discrete_fp50(pred_cum, gt_cum, seq_name, out_path):
         pred_fp50  = _fp50_frame(pred_cum)
         gt_fp50    = _fp50_frame(gt_cum)
 
-        fig, ax = plt.subplots(figsize=(10, 4))
-        ax.plot(frames, pred_pct, label="Predicted", lw=1.5)
-        ax.plot(frames, gt_pct,   label="GT",        lw=1.5, ls="--")
-        if pred_fp50 >= 0: ax.axvline(pred_fp50, color="C0", ls=":", lw=1.5, label=f"fp50 pred (frame {pred_fp50})")
-        if gt_fp50   >= 0: ax.axvline(gt_fp50,   color="C1", ls=":", lw=1.5, label=f"fp50 GT (frame {gt_fp50})")
+        fig, ax = plt.subplots(figsize=(12, 5.5))
+        ax.plot(frames, pred_pct, label="Predicted", lw=2.0)
+        ax.plot(frames, gt_pct,   label="GT",        lw=2.0, ls="--")
+        if pred_fp50 >= 0: ax.axvline(pred_fp50, color="C0", ls=":", lw=2.0, label=f"fp50 pred (frame {pred_fp50})")
+        if gt_fp50   >= 0: ax.axvline(gt_fp50,   color="C1", ls=":", lw=2.0, label=f"fp50 GT (frame {gt_fp50})")
         ex_idx, ex_imgno = _excel_fp50_frame(seq_name)
         if ex_idx is not None:
-            ax.axvline(ex_idx, color="C2", ls="-.", lw=1.5, label=f"fp50 GT Excel (frame {ex_imgno})")
-        ax.set_xlabel("Frame pair index"); ax.set_ylabel("% of embolism")
-        ax.set_title(f"Discrete FP50 — {seq_name}"); ax.set_ylim(0, 105)
-        ax.legend(); ax.grid(True, alpha=0.3); fig.tight_layout()
+            ax.axvline(ex_idx, color="C2", ls="-.", lw=2.0, label=f"fp50 GT Excel (frame {ex_imgno})")
+        ax.set_xlabel("Frame pair index", fontsize=19); ax.set_ylabel("% of embolism", fontsize=19)
+        ax.set_title(f"Discrete FP50 — {seq_name}", fontsize=20); ax.set_ylim(0, 105)
+        ax.tick_params(axis="both", labelsize=16)
+        ax.legend(fontsize=15); ax.grid(True, alpha=0.3); fig.tight_layout()
         fig.savefig(out_path, dpi=120); plt.close(fig)
     except ImportError:
         pass
