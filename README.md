@@ -18,10 +18,11 @@ plants dried to 100% embolism, we compare our model's predictions with results o
 via traditional post-processing by an expert. The model resolved P50 to within 0.04 MPa
 of the expert-processed data, demonstrating its promise for increasing the efficiency
 and throughput of P50 calculation, although it did not perfectly replicate the pixels
-constituting the embolism events (mean event-frame IoU of 0.38). We invite the community
-to use our model, but emphasise that it does not replace the expert-processing pipeline
-and that care must be taken when considering when and how to apply this and similar
-approaches to OVT data. 
+constituting the embolism events (mean event-frame IoU of 0.38). **We do not propose
+replacing the semi-automated (expert) pipeline; rather, we leverage expert-processed data
+to train a neural network that greatly increases the efficiency and throughput of OVT
+image processing**. We invite the community to use our model, and emphasise that care must
+be taken when considering when and how to apply this and similar approaches to OVT data. 
 
 <img src="images/demo.gif" width="100%" alt="Prediction demo"/>
 
